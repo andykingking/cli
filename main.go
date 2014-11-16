@@ -109,7 +109,13 @@ func main() {
 			Name:      "submit",
 			ShortName: "s",
 			Usage:     descSubmit,
-			Action:    cmd.Submit,
+			Flags: []cli.Flag{
+				cli.BoolFlag{
+					Name:  "open, o",
+					Usage: "open submission in browser",
+				},
+			},
+			Action: cmd.Submit,
 		},
 		{
 			Name:      "unsubmit",

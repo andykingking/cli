@@ -10,6 +10,7 @@ import (
 	"github.com/codegangsta/cli"
 	"github.com/exercism/cli/api"
 	"github.com/exercism/cli/config"
+	"github.com/toqueteos/webbrowser"
 )
 
 // Submit posts an iteration to the api
@@ -96,6 +97,10 @@ func Submit(ctx *cli.Context) {
 	submission, err := api.Submit(url, iteration)
 	if err != nil {
 		log.Fatal(err)
+	}
+
+	if ctx.Bool("open") {
+		webbrowser.Open(submission.URL)
 	}
 
 	msg := `
